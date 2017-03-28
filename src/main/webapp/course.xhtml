@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="form1">
+        <h:panelGrid columns="3">
+            <h:panelGrid columns="2" style="vertical-align: top">
+                <h:outputText value='Enter Name'/>
+                <h:inputText value='#{courseBean.name}'/>
+                <h:outputText value='Enter start date'/>
+                <h:inputText id = "startDate" value = "#{courseBean.startDate}" label = "Date" >
+                    <f:convertDateTime pattern = "dd/MM/yyyy" />
+                </h:inputText>
+                <h:outputText value='Enter end date'/>
+                <h:inputText id = "endDate" value='#{courseBean.endDate}' label="Date">
+                        <f:convertDateTime pattern = "dd/MM/yyyy"/>
+                </h:inputText>
+                <h:commandButton action="#{courseBean.addCourse}" value="#{courseBean.submitButtonLabel}"/>
+                <h:inputHidden value="#{courseBean.id}"/>
+            </h:panelGrid>
+            <h:outputText value=''/>
+            <h:panelGrid columns="1">
+                <h:dataTable id="tbl1" value="#{courseBean.courses}" var="c">
+                    <h:column >
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText id="id" value="#{c.id}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{c.name}"/>
+                    </h:column>
+                    <h:column >
+                    <f:facet name="header">Start_Date</f:facet>
+                    <h:outputText value="#{c.startDate}"/>
+                </h:column>
+                    <h:column >
+                        <f:facet name="header">End_Date</f:facet>
+                        <h:outputText value="#{c.endDate}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Remove" action="#{courseBean.removeCourse(c.id)}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Edit" action="#{courseBean.editCourse(c.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid>
+        </h:panelGrid>
+    </h:form>
+</f:view>
+</html>
