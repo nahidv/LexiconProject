@@ -24,7 +24,7 @@ public class CourseBean {
     CourseService courseService;
 
     public String addCourse(){
-        System.out.println("here");
+        //System.out.println("here");
         if (getId()==null)
             courseService.addCourse(new CourseDomain(getName(), getStartDate(), getEndDate()));
         else

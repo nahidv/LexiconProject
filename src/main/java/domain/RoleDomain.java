@@ -7,6 +7,10 @@ public class RoleDomain {
     private int id;
     private String roleName;
 
+    public RoleDomain(String roleName){
+        this.roleName= roleName;
+    }
+
     public RoleDomain(int id, String roleName){
         this.id= id;
         this.roleName= roleName;
@@ -15,9 +19,9 @@ public class RoleDomain {
 
     public void setId(int id){this.id = id;}
 
-    public String getRole(){return roleName;}
+    public String getRoleName(){return roleName;}
 
-    public void setRole(String roleName){this.roleName= roleName;}
+    public void setRoleName(String roleName){this.roleName= roleName;}
 }
 
 

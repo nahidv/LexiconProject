@@ -1,28 +1,29 @@
 package jpa;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Nahid on 2017-03-28.
  */
-public class User {
+@Entity
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
+    private int id;
 
     private String firstName;
     private String lastName;
     private String userName;
     private String password;
+
+    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name= "ROLE_ID")
     private Role role;
 
-    public User() {}
+    public Users() {}
 
 
-    public User(String firstName, String lastName, String userName, String password, Role role) {
+    public Users(String firstName, String lastName, String userName, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;

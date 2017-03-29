@@ -23,7 +23,7 @@
 
   <!-- Welcome files -->
   <welcome-file-list>
-    <welcome-file>course.xhtml</welcome-file>
+    <welcome-file>role.xhtml</welcome-file>
   </welcome-file-list>
 
 </web-app>

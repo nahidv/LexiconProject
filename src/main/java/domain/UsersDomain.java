@@ -5,7 +5,7 @@ import jpa.Role;
 /**
  * Created by Nahid on 2017-03-23.
  */
-public class UserDomain {
+public class UsersDomain {
     private int id;
     private String firstName;
     private String lastName;
