@@ -17,8 +17,8 @@ import java.util.List;
 @RequestScoped
 public class PersonBean {
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String userName;
     private String password;
     private Role role;
@@ -29,13 +29,13 @@ public class PersonBean {
 
     public String addPerson(){
         if (getId()==null)
-            personService.addPerson(new PersonDomain(getFirstname(),getLastname(), getUserName(),getPassword(),getRole()));
+            personService.addPerson(new PersonDomain(getFirstName(),getLastName(), getUserName(),getPassword(),getRole()));
         else
-            personService.updatePerson(new PersonDomain(getId(),getFirstname(),getLastname(),getUserName(),getPassword(),getRole()));
+            personService.updatePerson(new PersonDomain(getId(),getFirstName(),getLastName(),getUserName(),getPassword(),getRole()));
 
         setId(null);
-        setFirstname("");
-        setLastname("");
+        setFirstName("");
+        setLastName("");
         setUserName("");
         setPassword("");
         setRole(null);
@@ -44,8 +44,8 @@ public class PersonBean {
     public String editPerson(Long id){
         PersonDomain personDomain = personService.getPerson(id);
         setId(personDomain.getId());
-        setFirstname(personDomain.getFirstName());
-        setLastname(personDomain.getLastName());
+        setFirstName(personDomain.getFirstName());
+        setLastName(personDomain.getLastName());
         setUserName(personDomain.getUserName());
         setPassword(personDomain.getPassword());
         setRole(personDomain.getRole());
@@ -72,20 +72,20 @@ public class PersonBean {
         else
             return "Update";
     }
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastname) {
+        this.lastName = lastname;
     }
 
     public Long getId() {

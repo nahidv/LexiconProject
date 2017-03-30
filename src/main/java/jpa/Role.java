@@ -19,7 +19,7 @@ public class Role {
     private String roleName;
 
     @OneToMany(mappedBy = "role")
-    private List<Users> students;
+    private List<Person> students;
 
     public Role(){}
 
@@ -35,10 +35,10 @@ public class Role {
 
     public void setRoleName(String roleName){this.roleName= roleName;}
 
-    public List<Users>getStudents(){
+    public List<Person>getStudents(){
         return students;
     }
-    public void setStudents(List<Users> students){
+    public void setStudents(List<Person> students){
         this.students= students;
     }
 }
