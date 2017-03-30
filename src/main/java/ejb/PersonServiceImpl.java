@@ -23,7 +23,7 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public void addPerson(PersonDomain person) {
-        Person p = new Person(person.getFirstName(),person.getLastName());
+        Person p = new Person(person.getFirstName(),person.getLastName(), person.getUserName(), person.getPassword(),person.getRole());
         em.persist(p);
     }
 
@@ -39,7 +39,7 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public PersonDomain getPerson(Long id) {
         Person p = em.find(Person.class,id);
-        return new PersonDomain(p.getId(),p.getFirstName(),p.getLastName());
+        return new PersonDomain(p.getId(),p.getFirstName(),p.getLastName(),p.getUserName(),p.getPassword(), p.getRole());
     }
 
     @Override
@@ -53,14 +53,14 @@ public class PersonServiceImpl implements PersonService{
 
         List<Person> l = em.createNamedQuery("selectAll").getResultList();
 
-        return l.stream().map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName())).collect(Collectors.toList());
+        return l.stream().map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName(),p.getUserName(),p.getPassword(),p.getRole())).collect(Collectors.toList());
 
     }
 
     @Override
     public List<PersonDomain> getPersonsFirstNameContain(String filter) {
         List<Person> l= em.createNamedQuery("selectSome").setParameter("filt", filter).getResultList();
-        return l.stream().map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName())).collect(Collectors.toList());
+        return l.stream().map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName(), p.getUserName(),p.getPassword(),p.getRole())).collect(Collectors.toList());
     }
 
 

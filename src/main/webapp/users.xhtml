@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="form1">
+        <h:panelGrid columns="3">
+            <h:panelGrid columns="2" style="vertical-align: top">
+                <h:outputText value='Enter First Name'/>
+                <h:inputText value='#{usersBean.firstName}'/>
+                <h:outputText value='Enter Last Name'/>
+                <h:inputText value='#{usersBean.lastName}'/>
+                <h:outputText value='Enter User Name'/>
+                <h:inputText value='#{usersBean.username}'/>
+                <h:outputText value='Enter Password'/>
+                <h:inputText value='#{usersBean.password}'/>
+                <h:outputText value='Enter Role Id'/>
+                <h:inputText value='#{usersBean.role}'/>
+
+                <h:commandButton action="#{usersBean.addUser}" value="#{usersBean.submitButtonLabel}"/>
+                <h:inputHidden value="#{usersBean.id}"/>
+            </h:panelGrid>
+            <h:outputText value=''/>
+            <h:panelGrid columns="1">
+                <h:dataTable id="tbl1" value="#{usersBean.allUsers}" var="u">
+                    <h:column >
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText id="id" value="#{u.id}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">FirstName</f:facet>
+                        <h:outputText value="#{u.firstName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">LastName</f:facet>
+                        <h:outputText value="#{u.lastName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">UserName</f:facet>
+                        <h:outputText value="#{u.userName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Password</f:facet>
+                        <h:outputText value="#{u.password}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Role</f:facet>
+                        <h:outputText value="#{u.role}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Remove" action="#{usersBean.removeUser(u.id)}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Edit" action="#{usersBean.editUser(u.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid>
+        </h:panelGrid>
+    </h:form>
+</f:view>
+</html>

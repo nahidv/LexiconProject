@@ -6,6 +6,9 @@ import javax.persistence.*;
  * Created by Nahid on 2017-03-28.
  */
 @Entity
+@NamedQueries(
+        {@NamedQuery(name = "selectAllTheUsers", query ="select u from Users u" )}
+)
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -61,7 +64,7 @@ public class Users {
 
     public String getPassword(){return password;}
 
-    public void setPassword(){this.password = password;}
+    public void setPassword(String password){this.password = password;}
 
     public Role getRole(){return role;}
 

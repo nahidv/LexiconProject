@@ -19,13 +19,22 @@ public class Person {
 
     private String firstName;
     private String lastName;
+    private String userName;
+    private String password;
+
+    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name= "ROLE_ID")
+    private Role role;
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName) {
+    public Person(String firstName, String lastName, String userName, String password, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
     }
 
     public long getId() {
@@ -51,4 +60,16 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getUserName(){return userName;}
+
+    public void setUserName(String userName){this.userName = userName;}
+
+    public String getPassword(){return password;}
+
+    public void setPassword(String password){this.password = password;}
+
+    public Role getRole(){return role;}
+
+    public void setRole(Role role){this.role = role;}
 }

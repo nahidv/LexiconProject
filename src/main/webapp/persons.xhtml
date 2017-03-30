@@ -13,6 +13,13 @@
                 <h:inputText value='#{personBean.firstname}'/>
                 <h:outputText value='Enter last name'/>
                 <h:inputText value='#{personBean.lastname}'/>
+                <h:outputText value='Enter user name'/>
+                <h:inputText value='#{personBean.userName}'/>
+                <h:outputText value='Enter password name'/>
+                <h:inputText value='#{personBean.password}'/>
+                <h:outputText value='Enter role id'/>
+                <h:inputText value='#{personBean.role}'/>
+
                 <h:commandButton action="#{personBean.addPerson}" value="#{personBean.submitButtonLabel}"/>
                 <h:inputHidden value="#{personBean.id}"/>
             </h:panelGrid>
@@ -31,6 +38,18 @@
                         <f:facet name="header">Last Name</f:facet>
                         <h:outputText value="#{p.lastName}"/>
                     </h:column>
+                        <h:column >
+                            <f:facet name="header">UserName</f:facet>
+                            <h:outputText value="#{p.userName}"/>
+                        </h:column>
+                        <h:column >
+                            <f:facet name="header">Password</f:facet>
+                            <h:outputText value="#{p.password}"/>
+                        </h:column>
+                        <h:column >
+                            <f:facet name="header">Role ID</f:facet>
+                            <h:outputText value="#{p.role}"/>
+                        </h:column>
                     <h:column >
                         <h:commandButton value="Remove" action="#{personBean.removePerson(p.id)}"/>
                     </h:column>
@@ -55,6 +74,18 @@
                     <h:column >
                         <f:facet name="header">Last Name</f:facet>
                         <h:outputText value="#{p.lastName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">UserName</f:facet>
+                        <h:outputText value="#{p.userName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Password</f:facet>
+                        <h:outputText value="#{p.password}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Role ID</f:facet>
+                        <h:outputText value="#{p.role}"/>
                     </h:column>
                     <h:column >
                         <h:commandButton value="Remove" action="#{personBean.removePerson(p.id)}"/>
