@@ -10,17 +10,19 @@ public class PersonDomain {
     private String lastName;
     private String userName;
     private String password;
-    private Role role;
+    private RoleDomain role;
 
-    public PersonDomain(String firstName, String lastName, String userName, String password, Role role) {
+
+    public PersonDomain(String firstName, String lastName, String userName, String password, RoleDomain role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
         this.role = role;
+
     }
 
-    public PersonDomain(long id, String firstName, String lastName, String userName, String password, Role role) {
+    public PersonDomain(long id, String firstName, String lastName, String userName, String password, RoleDomain role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -69,7 +71,7 @@ public class PersonDomain {
         this.password = password;
     }
 
-    public Role getRole(){return role;}
+    public RoleDomain getRole(){return role;}
 
-    public void setRole(Role role){this.role = role;}
+    public void setRole(RoleDomain role){this.role = role;}
 }
