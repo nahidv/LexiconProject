@@ -48,7 +48,9 @@ public class CourseDomain {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {return endDate;}
+    public Date getEndDate()   {
+        return endDate;
+    }
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
