@@ -2,7 +2,7 @@ package domain;
 
 import jpa.Role;
 /**
- * Created by Solidbeans on 2017-03-20.
+ * Created by Nahid on 2017-03-25.
  */
 public class PersonDomain {
     private long id;

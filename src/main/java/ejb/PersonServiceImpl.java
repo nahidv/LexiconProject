@@ -66,6 +66,12 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
+    public List<PersonDomain> getTeachers() {
+        List<Person> l= em.createNamedQuery("selectTeachers").setParameter("name","teacher").getResultList();
+        return l.stream().map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName(), p.getUserName(),p.getPassword(),new RoleDomain(p.getRole().getRoleName()))).collect(Collectors.toList());
+    }
+
+    @Override
     public List<PersonDomain> getPersonsFirstNameContain(String filter) {
         List<Person> l= em.createNamedQuery("selectSome").setParameter("filt", filter).getResultList();
         return l.stream().map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName(), p.getUserName(),p.getPassword(),new RoleDomain(p.getRole().getRoleName()))).collect(Collectors.toList());

@@ -2,6 +2,7 @@ package jpa;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Nahid on 2017-03-23.
@@ -21,6 +22,9 @@ public class Course {
     private Date startDate;
     private Date endDate;
 
+    @OneToMany(mappedBy = "course")
+    private List<Teaching> teachings;
+
 
     public Course(){}
 
@@ -28,6 +32,7 @@ public class Course {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
+
     }
 
     public Integer getId() {   return id;  }
@@ -58,6 +63,13 @@ public class Course {
 
     public void setendDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public List<Teaching>getTeachings(){
+        return teachings;
+    }
+    public void setTeachings(List<Teaching> teachings){
+        this.teachings= teachings;
     }
 
 }

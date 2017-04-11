@@ -20,10 +20,15 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  <!-- For comment out -->
+  <context-param>
+    <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+    <param-value>true</param-value>
+  </context-param>
 
   <!-- Welcome files -->
   <welcome-file-list>
-    <welcome-file>persons.xhtml</welcome-file>
+    <welcome-file>teaching.xhtml</welcome-file>
   </welcome-file-list>
 
 </web-app>

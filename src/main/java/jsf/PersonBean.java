@@ -79,6 +79,11 @@ public class PersonBean {
         else
             return personService.getPersonsFirstNameContain(myFilter);
     }
+    public List<PersonDomain> getTeachers(){
+        return personService.getTeachers();
+    }
+
+
 
     public String getSubmitButtonLabel(){
         if (id==null)

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="form1">
+        <h:panelGrid columns="3">
+            <h:panelGrid columns="2" style="vertical-align: top">
+                <h:outputText value='Select Course Name'/>
+                <h:selectOneMenu value="#{teachingBean.courseId}">
+                    <f:selectItems value="#{courseBean.courses}" var="course" itemValue="#{course.id}" itemLabel="#{course.name}" />
+                </h:selectOneMenu>
+
+               <h:outputText value='Select Teacher Name'/>
+                <h:selectOneMenu value="#{teachingBean.teacherId}">
+                    <f:selectItems value="#{personBean.teachers}" var="teacher" itemValue="#{teacher.id}" itemLabel="#{teacher.firstName}" />
+                </h:selectOneMenu>
+
+                <h:commandButton action="#{teachingBean.addTeaching}" value="#{teachingBean.submitButtonLabel}"/>
+                <h:inputHidden value="#{teachingBean.id}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="1" style="vertical-align: top">
+                <h:outputText value="Teaching List"/>
+                <h:dataTable id="tbl1" value="#{teachingBean.teachings}" var="t">
+                    <h:column >
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText id="id" value="#{t.id}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Course Name</f:facet>
+                        <h:outputText value="#{t.course.name}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Teacher FirstName</f:facet>
+                        <h:outputText value="#{t.teacher.firstName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Teacher FamilyName</f:facet>
+                        <h:outputText value="#{t.teacher.lastName}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Remove" action="#{teachingBean.removeTeaching(t.id)}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Edit" action="#{teachingBean.editTeaching(t.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid>
+
+           <!-- <h:panelGrid columns="1" style="vertical-align:text-top">
+                <h:outputText value="Filterd List"/>
+                <h:inputText value="#{teachingBean.myFilter}"/>
+                <h:commandButton action="persons" value="Refresh"/>
+                <h:dataTable id="tbl2" value="#{personBean.personsFilter}" var="p">
+                    <h:column >
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText value="#{p.id}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">First Name</f:facet>
+                        <h:outputText value="#{p.firstName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Last Name</f:facet>
+                        <h:outputText value="#{p.lastName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">UserName</f:facet>
+                        <h:outputText value="#{p.userName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Password</f:facet>
+                        <h:outputText value="#{p.password}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Role ID</f:facet>
+                        <h:outputText value="#{p.role.roleName}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Remove" action="#{personBean.removePerson(p.id)}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Edit" action="#{personBean.editPerson(p.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid> -->
+        </h:panelGrid>
+    </h:form>
+</f:view>
+</html>

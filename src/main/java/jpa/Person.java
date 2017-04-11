@@ -8,7 +8,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name="selectAll",query="SELECT p FROM Person p"),
-        @NamedQuery(name="selectSome",query="SELECT t FROM Person t WHERE LOCATE(:filt,t.firstName) >0 ")
+        @NamedQuery(name="selectSome",query="SELECT s FROM Person s WHERE LOCATE(:filt,s.firstName) >0 "),
+      //  @NamedQuery(name="selectTeachers",query="SELECT  t FROM Person t WHERE LOCATE(:filt,t.role.roleName)= :name "),
+        @NamedQuery(name="selectTeachers", query="SELECT t FROM Person t WHERE t.role.roleName LIKE :name")
 })
 public class Person {
 
@@ -25,6 +27,8 @@ public class Person {
     @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name= "ROLE_ID")
     private Role role;
+
+    //@OneToOne(fetch= FetchType.LAZY, mappedBy="person")
 
     public Person() {
     }

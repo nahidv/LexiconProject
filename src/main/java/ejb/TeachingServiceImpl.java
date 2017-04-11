@@ -6,6 +6,7 @@ import domain.RoleDomain;
 import domain.TeachingDomain;
 import jpa.Course;
 import jpa.Person;
+import jpa.Role;
 import jpa.Teaching;
 
 import javax.ejb.Stateless;
@@ -36,8 +37,9 @@ public class TeachingServiceImpl implements TeachingService {
     @Override
     public void updateTeaching(TeachingDomain teaching) {
         Teaching t = em.find(Teaching.class,teaching.getId());
-        Course c =em.find(Course.class, teaching.getCourse().getName());
-        Person p = em.find(Person.class,teaching.getTeacher().getRole());
+        Course c = new Course(teaching.getCourse().getName(),teaching.getCourse().getStartDate(),teaching.getCourse().getEndDate());
+        Role r = new Role(t.getTeacher().getRole().getRoleName());
+        Person p = new Person(teaching.getTeacher().getFirstName(),teaching.getTeacher().getLastName(),teaching.getTeacher().getUserName(),teaching.getTeacher().getPassword(),r);
         t.setCourse(c);
         t.setTeacher(p);
         em.merge(t);
@@ -49,7 +51,6 @@ public class TeachingServiceImpl implements TeachingService {
         CourseDomain c = new CourseDomain(t.getCourse().getName(),t.getCourse().getStartDate(),t.getCourse().getendDate());
         RoleDomain r = new RoleDomain(t.getTeacher().getRole().getRoleName());
         PersonDomain p = new PersonDomain(t.getTeacher().getFirstName(), t.getTeacher().getLastName(), t.getTeacher().getUserName(), t.getTeacher().getPassword(), r);
-
         return new TeachingDomain(t.getId(),c, p);
     }
 
@@ -62,7 +63,6 @@ public class TeachingServiceImpl implements TeachingService {
     @Override
     public List<TeachingDomain> getTeachings() {
         List<Teaching> l = em.createNamedQuery("selectAllTeachings").getResultList();
-
-        return l.stream().map(t->new TeachingDomain(t.getId(),new CourseDomain(t.getCourse().getName()), new PersonDomain(t.getTeacher().getRole())))).collect(Collectors.toList());
+        return l.stream().map(t->new TeachingDomain(t.getId(),new CourseDomain(t.getCourse().getName(),t.getCourse().getStartDate(),t.getCourse().getendDate()), new PersonDomain(t.getTeacher().getFirstName(), t.getTeacher().getLastName(), t.getTeacher().getUserName(), t.getTeacher().getPassword(), new RoleDomain(t.getTeacher().getRole().getRoleName())))).collect(Collectors.toList());
     }
 }

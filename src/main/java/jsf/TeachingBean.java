@@ -1,9 +1,13 @@
 package jsf;
 
+import domain.CourseDomain;
 import domain.PersonDomain;
 import domain.RoleDomain;
+import domain.TeachingDomain;
+import ejb.CourseService;
 import ejb.PersonService;
 import ejb.RoleService;
+import ejb.TeachingService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -18,87 +22,59 @@ import java.util.List;
 @RequestScoped
 public class TeachingBean {
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String userName;
-    private String password;
+    private Integer courseId;
+    private Long personId;
 
-    private Integer roleId;
-
-
-
-    private String myFilter;
-
+    @EJB
+    TeachingService teachingService;
     @EJB
     PersonService personService;
     @EJB
-    RoleService roleService;
+    CourseService courseService;
 
-    public String addPerson(){
-
+    public String addTeaching(){
 
         if (getId()==null) {
 
-
-            personService.addPerson(new PersonDomain(getFirstName(), getLastName(), getUserName(), getPassword(), getRole()));
+            teachingService.addTeaching(new TeachingDomain(getCourse(),getTeacher()));
         }
         else
-            personService.updatePerson(new PersonDomain(getId(),getFirstName(),getLastName(),getUserName(),getPassword(),getRole()));
+            teachingService.updateTeaching(new TeachingDomain(getId(),getCourse(),getTeacher()));
 
         setId(null);
-        setFirstName("");
-        setLastName("");
-        setUserName("");
-        setPassword("");
-        setRoleId(null);
-        setRole(null);
-        return "person";
+        setCourseId(null);
+        setTeacherId(null);
+        setCourse(null);
+        setTeacher(null);
+        return "teaching";
     }
-    public String editPerson(Long id){
-        PersonDomain personDomain = personService.getPerson(id);
-        setId(personDomain.getId());
-        setFirstName(personDomain.getFirstName());
-        setLastName(personDomain.getLastName());
-        setUserName(personDomain.getUserName());
-        setPassword(personDomain.getPassword());
-        setRole(personDomain.getRole().getId());
-        return "person";
+    public String editTeaching(Long id){
+        TeachingDomain teachingDomain = teachingService.getTeaching(id);
+        setId(teachingDomain.getId());
+        setCourse(teachingDomain.getCourse().getId());
+        setTeacher(teachingDomain.getTeacher().getId());
+        return "teaching";
     }
-    public String removePerson(Long id){
-        personService.removePerson(id);
-        return "person";
+    public String removeTeaching(Long id){
+        teachingService.removeTeaching(id);
+        return "teaching";
     }
-    public List<PersonDomain> getPersons(){
-        return personService.getPersons();
+    public List<TeachingDomain> getTeachings(){
+        return teachingService.getTeachings();
     }
 
-    public List<PersonDomain> getPersonsFilter(){
+   /* public List<TeachingDomain> getTaachingFilter(){
         if(myFilter==null || myFilter.equals(""))
-            return personService.getPersons();
+            return teacingsService.getTeachings();
         else
-            return personService.getPersonsFirstNameContain(myFilter);
-    }
+            return teachingService.getTeachingsFirstNameContain(myFilter);
+    }*/
 
     public String getSubmitButtonLabel(){
         if (id==null)
             return "Add";
         else
             return "Update";
-    }
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Long getId() {
@@ -109,33 +85,43 @@ public class TeachingBean {
         this.id = id;
     }
 
-    public String getUserName() {return userName;}
+    public CourseDomain getCourse(){
 
-    public void setUserName(String userName){this.userName = userName;}
+        CourseDomain courseDomain= courseService.getCourse(getCourseId());
+        courseId= courseDomain.getId();
+        return courseDomain;
+    }
 
-    public String getPassword(){return password;}
+    public void setCourse(Integer courseId){
 
-    public void setPassword(String password){this.password = password;}
+        this.courseId= courseId;}
 
-    public RoleDomain getRole(){
+    public Integer getCourseId() {
+        return courseId;
+    }
 
-        RoleDomain roleDomain= roleService.getRole(getRoleId());
-        roleId= roleDomain.getId();
-        return roleDomain;
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
 
+    public PersonDomain getTeacher(){
 
-    public void setRole(Integer roleId){
+        PersonDomain personDomain= personService.getPerson(getTeacherId());
+        personId= personDomain.getId();
+        return personDomain;
+    }
+    public void setTeacher(Long personId){
 
-        this.roleId= roleId;}
+        this.personId= personId;}
 
-    public Integer getRoleId() {
-        return roleId;
+    public Long getTeacherId() {
+        return personId;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setTeacherId(Long personId) {
+        this.personId = personId;
     }
+
 
 }
