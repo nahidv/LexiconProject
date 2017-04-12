@@ -17,11 +17,11 @@ public class Teaching {
     private Long id;
 
 
-    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name= "COURSE_ID")
     private Course course;
 
-    @OneToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch= FetchType.EAGER)
     @JoinColumn(name= "PERSON_ID")
     private Person teacher;
 

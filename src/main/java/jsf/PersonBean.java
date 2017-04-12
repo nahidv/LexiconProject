@@ -83,7 +83,9 @@ public class PersonBean {
         return personService.getTeachers();
     }
 
-
+    public List<PersonDomain> getStudents(){
+        return personService.getStudents();
+    }
 
     public String getSubmitButtonLabel(){
         if (id==null)

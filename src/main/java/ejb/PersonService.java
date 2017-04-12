@@ -17,5 +17,6 @@ public interface PersonService {
     void removePerson(Long id);
     List<PersonDomain> getPersons();
     List<PersonDomain>getTeachers();
+    List<PersonDomain>getStudents();
     public List<PersonDomain>getPersonsFirstNameContain(String filter);
 }
