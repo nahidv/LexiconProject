@@ -28,7 +28,7 @@
 
   <!-- Welcome files -->
   <welcome-file-list>
-    <welcome-file>register.xhtml</welcome-file>
+    <welcome-file>attendance.xhtml</welcome-file>
   </welcome-file-list>
 
 </web-app>

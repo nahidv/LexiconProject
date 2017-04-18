@@ -6,7 +6,66 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <h:form id="form1">
+        <h:panelGrid columns="3">
+            <h:panelGrid columns="2" style="vertical-align: top">
+                <h:outputText value='Select Student name'/>
+                <h:selectOneMenu value="#{attendanceBean.registerId}">
+                    <f:selectItems value="#{registerBean.registers}" var="register" itemValue="#{register.id}" itemLabel="#{register.student.firstName}" />
+                </h:selectOneMenu>
 
+                <h:outputText value='Select Course name'/>
+                <h:selectOneMenu value="#{attendanceBean.registerId}">
+                    <f:selectItems value="#{registerBean.registers}" var="register" itemValue="#{register.id}" itemLabel="#{register.course.name}" />
+                </h:selectOneMenu>
+
+                <h:outputText value='Enter Date'/>
+                <h:inputText id = "Date" value = "#{attendanceBean.date}" label = "Date" >
+                    <f:convertDateTime pattern = "dd/MM/yyyy" />
+                </h:inputText>
+
+                <h:outputText value='Enter Attendance'/>
+                <h:inputText value='#{attendanceBean.attend}'/>
+
+                <h:commandButton action="#{attendanceBean.addAttendance}" value="#{attendanceBean.submitButtonLabel}"/>
+                <h:inputHidden value="#{attendanceBean.id}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="1" style="vertical-align: top">
+                <h:outputText value="Attendance List"/>
+                <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="a">
+                    <h:column >
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText id="id" value="#{a.id}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Course Name</f:facet>
+                        <h:outputText value="#{a.register.course.name}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Student's Firstname</f:facet>
+                        <h:outputText value="#{a.register.student.firstName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Student's Lastname</f:facet>
+                        <h:outputText value="#{a.register.student.lastName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{a.date}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Attendance</f:facet>
+                        <h:outputText value="#{a.attend}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Remove" action="#{attendanceBean.removeAttendance(a.id)}"/>
+                    </h:column>
+                    <h:column >
+                        <h:commandButton value="Edit" action="#{attendanceBean.editAttendance(a.id)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid>
+        </h:panelGrid>
+    </h:form>
 </f:view>
 </html>

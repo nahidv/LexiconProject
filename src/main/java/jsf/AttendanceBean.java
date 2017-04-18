@@ -19,8 +19,8 @@ import java.util.List;
  * Created by Nahid on 2017-04-13.
  */
 
-@ManagedBean
-@RequestScoped
+@javax.faces.bean.ManagedBean
+@javax.faces.bean.RequestScoped
 public class AttendanceBean {
     private Long id;
     private Long registerId;
