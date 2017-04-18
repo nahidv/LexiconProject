@@ -29,10 +29,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public void updateAttendance(AttendanceDomain attendance) {
         Attendance a = em.find(Attendance.class,attendance.getId());
-        Role role = new Role(a.getRegister().getStudent().getRole().getRoleName());
-        Course c = new Course(a.getRegister().getCourse().getName(),a.getRegister().getCourse().getStartDate(),a.getRegister().getCourse().getendDate());
-        Person p = new Person(a.getRegister().getStudent().getFirstName(),a.getRegister().getStudent().getLastName(),a.getRegister().getStudent().getUserName(),a.getRegister().getStudent().getPassword(),role);
-        Register r = new Register(c,p);
+       // Role role = new Role(a.getRegister().getStudent().getRole().getRoleName());
+       // Course c = em.find(Course.class, attendance.getRegister().getId());
+      //  Course c = new Course(a.getRegister().getCourse().getName(),a.getRegister().getCourse().getStartDate(),a.getRegister().getCourse().getendDate());
+       // Person p = new Person(a.getRegister().getStudent().getFirstName(),a.getRegister().getStudent().getLastName(),a.getRegister().getStudent().getUserName(),a.getRegister().getStudent().getPassword(),role);
+        Register r = em.find(Register.class, attendance.getRegister().getId());
+      //  Register r = new Register(c);
         a.setRegister(r);
         a.setDate(attendance.getDate());
         a.setAttend(attendance.getAttend());

@@ -12,6 +12,7 @@ import javax.persistence.*;
         @NamedQuery(name="selectAllRegisters",query="SELECT r FROM Register r"),
          @NamedQuery(name="selectSomeRegisters1",query="SELECT sr FROM Register sr WHERE LOCATE(:filt,sr.student.firstName) >0 "),
         @NamedQuery(name="selectSomeRegisters2",query="SELECT sr FROM Register sr WHERE LOCATE(:filt,sr.course.name) >0 ")
+       // @NamedQuery(name="selectTeacherCourses", query="SELECT tc FROM Regi")
 })
 
 public class Register {

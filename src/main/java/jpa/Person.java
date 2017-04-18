@@ -25,7 +25,8 @@ public class Person {
     private String userName;
     private String password;
 
-    @ManyToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch= FetchType.EAGER)
+    //, cascade = CascadeType.ALL
     @JoinColumn(name= "ROLE_ID")
     private Role role;
 

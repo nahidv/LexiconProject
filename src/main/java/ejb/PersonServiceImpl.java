@@ -33,7 +33,7 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public void updatePerson(PersonDomain person) {
         Person p = em.find(Person.class,person.getId());
-        Role r = new Role(person.getRole().getRoleName());
+        Role r = em.find(Role.class,person.getRole().getId());
         p.setFirstName(person.getFirstName());
         p.setLastName(person.getLastName());
         p.setUserName(person.getUserName());

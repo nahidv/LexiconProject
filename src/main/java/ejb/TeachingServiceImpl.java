@@ -37,9 +37,8 @@ public class TeachingServiceImpl implements TeachingService {
     @Override
     public void updateTeaching(TeachingDomain teaching) {
         Teaching t = em.find(Teaching.class,teaching.getId());
-        Course c = new Course(teaching.getCourse().getName(),teaching.getCourse().getStartDate(),teaching.getCourse().getEndDate());
-        Role r = new Role(t.getTeacher().getRole().getRoleName());
-        Person p = new Person(teaching.getTeacher().getFirstName(),teaching.getTeacher().getLastName(),teaching.getTeacher().getUserName(),teaching.getTeacher().getPassword(),r);
+        Course c= em.find(Course.class,teaching.getCourse().getId() );
+        Person p = em.find(Person.class, teaching.getTeacher().getId());
         t.setCourse(c);
         t.setTeacher(p);
         em.merge(t);

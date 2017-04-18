@@ -34,9 +34,10 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public void updateRegister(RegisterDomain register) {
         Register r = em.find(Register.class,register.getId());
-        Course c = new Course(register.getCourse().getName(),register.getCourse().getStartDate(),register.getCourse().getEndDate());
-        Role role = new Role(r.getStudent().getRole().getRoleName());
-        Person p = new Person(register.getStudent().getFirstName(),register.getStudent().getLastName(),register.getStudent().getUserName(),register.getStudent().getPassword(),role);
+        Course c = em.find(Course.class, register.getCourse().getId());
+       // Course c = new Course(register.getCourse().getName(),register.getCourse().getStartDate(),register.getCourse().getEndDate());
+
+        Person p = em.find(Person.class, register.getStudent().getId());
         r.setCourse(c);
         r.setStudent(p);
         em.merge(r);
