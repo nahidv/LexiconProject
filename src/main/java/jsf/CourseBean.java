@@ -59,6 +59,12 @@ public class CourseBean {
         else
             return "Update";
     }
+
+    public String submitButtonLabel2(){
+        System.out.println(getCourses());
+        return "attendance";
+    }
+
     public String getName() {
         return name;
     }

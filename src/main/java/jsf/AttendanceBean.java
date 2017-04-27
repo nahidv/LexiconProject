@@ -1,13 +1,7 @@
 package jsf;
 
-import domain.AttendanceDomain;
-import domain.CourseDomain;
-import domain.PersonDomain;
-import domain.RegisterDomain;
-import ejb.AttendanceService;
-import ejb.CourseService;
-import ejb.PersonService;
-import ejb.RegisterService;
+import domain.*;
+import ejb.*;
 
 import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
@@ -26,12 +20,17 @@ public class AttendanceBean {
     private Long registerId;
     private Date date;
     private boolean attend;
+  //  private Long teachingId;
+
+    private String myFilter;
+
 
     @EJB
     AttendanceService attendanceService;
     @EJB
     RegisterService registerService;
-
+    @EJB
+    TeachingService teachingService;
 
 
     public String addAttendance(){
@@ -48,12 +47,15 @@ public class AttendanceBean {
         setRegisterId(null);
         setDate(null);
         setAttend(false);
+       // setTeaching(null);
+       // setTeachingId(null);
         return "attendance";
     }
     public String editAttendance(Long id){
         AttendanceDomain attendanceDomain = attendanceService.getAttendance(id);
         setId(attendanceDomain.getId());
         setRegister(attendanceDomain.getRegister().getId());
+       // setTeaching(attendanceDomain.getTeaching().getId());
         return "attendance";
     }
     public String removeAttendance(Long id){
@@ -64,18 +66,25 @@ public class AttendanceBean {
         return attendanceService.getAttendances();
     }
 
-   /* public List<TeachingDomain> getTaachingFilter(){
-        if(myFilter==null || myFilter.equals(""))
-            return teacingsService.getTeachings();
+
+
+   public List<AttendanceDomain> getStudentsPerCourse(){
+        if (getRegister()==null)
+            return null;
         else
-            return teachingService.getTeachingsFirstNameContain(myFilter);
-    }*/
+            return attendanceService.getStudentsPerCourse(getRegister().getCourse().getId());
+    }
 
     public String getSubmitButtonLabel(){
         if (id==null)
             return "Add";
         else
             return "Update";
+    }
+
+    public String submitButtonLabel2(){
+        System.out.println(getRegisterId());
+            return "attendance";
     }
 
     public Long getId() {
@@ -89,13 +98,15 @@ public class AttendanceBean {
     public RegisterDomain getRegister(){
 
         RegisterDomain registerDomain= registerService.getRegister(getRegisterId());
-        registerId= registerDomain.getId();
+        if(registerDomain != null)
+            registerId= registerDomain.getId();
         return registerDomain;
     }
 
     public void setRegister(Long registerId){
 
-        this.registerId= registerId;}
+        this.registerId= registerId;
+    }
 
     public Long getRegisterId() {
         return registerId;
@@ -113,5 +124,23 @@ public class AttendanceBean {
 
     public void setAttend(boolean attend){this.attend= attend;}
 
+    /*public TeachingDomain getTeaching(){
+        TeachingDomain teachingDomain = teachingService.getTeaching(getTeachingId());
+        teachingId= teachingDomain.getId();
+        return teachingDomain;
+    } */
+    /*public void setTeaching(Long teachingId){
+        this.teachingId= teachingId;
+    }
+    public Long getTeachingId() {return teachingId;}
+
+    public void setTeachingId(Long teachingId){this.teachingId=teachingId;}*/
+
+    public String getMyFilter(){
+        return myFilter;
+    }
+    public void setMyFilter(String myFilter){
+        this.myFilter= myFilter;
+    }
 
 }

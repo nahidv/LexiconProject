@@ -9,15 +9,28 @@
     <h:form id="form1">
         <h:panelGrid columns="3">
             <h:panelGrid columns="2" style="vertical-align: top">
-                <h:outputText value='Select Student name'/>
-                <h:selectOneMenu value="#{attendanceBean.registerId}">
-                    <f:selectItems value="#{registerBean.registers}" var="register" itemValue="#{register.id}" itemLabel="#{register.student.firstName}" />
+                <h:outputText value='Select Your Course'/>
+                <h:selectOneMenu value="#{registerBean.courseId}">
+                    <f:selectItems value="#{courseBean.courses}" var="courses" itemValue="#{courses.id}" itemLabel="#{courses.name}" />
                 </h:selectOneMenu>
+                <h:commandButton value="submit" action="#{courseBean.submitButtonLabel2}"/>
+                    <h:inputHidden value=" Course Id"/>
+                <!--         <h:inputHidden value="#{attendanceBean.register.id}"/>-->
 
-                <h:outputText value='Select Course name'/>
-                <h:selectOneMenu value="#{attendanceBean.registerId}">
-                    <f:selectItems value="#{registerBean.registers}" var="register" itemValue="#{register.id}" itemLabel="#{register.course.name}" />
-                </h:selectOneMenu>
+               <h:outputText value='Select Student name'/>
+                  <h:selectOneMenu value="#{attendanceBean.registerId}">
+                      <f:selectItems value="#{registerBean.registers}" var="students" itemValue="#{students.id}" itemLabel="#{students.student.firstName}" />
+                  </h:selectOneMenu>
+
+              <!-- <h:outputText value= 'select Student' />
+                <h:selectOneMenu value="#{attendanceBean.id}">
+                    <f:selectItems value="#{attendanceBean.studentsPerCourse}" var="students" itemValue="#{students.register.student}" itemLabel="#{students.register.student.firstName}" />
+                </h:selectOneMenu>-->
+
+              <!--  <h:outputText value='Select Student'/>
+                    <h:selectOneMenu value="#{attendanceBean.registerId}">
+                        <f:selectItems value="#{registerBean.studentsPerCourse}" var="students" itemValue="#{students.id}" itemLabel = "#{students.student.firstName}"/>
+                    </h:selectOneMenu>-->
 
                 <h:outputText value='Enter Date'/>
                 <h:inputText id = "Date" value = "#{attendanceBean.date}" label = "Date" >

@@ -3,7 +3,7 @@ package jpa;
 import javax.persistence.*;
 
 /**
- * Created by Solidbeans on 2017-03-20.
+ * Created by Nahid on 2017-03-28.
  */
 @Entity
 @NamedQueries({
@@ -11,7 +11,8 @@ import javax.persistence.*;
         @NamedQuery(name="selectSome",query="SELECT s FROM Person s WHERE LOCATE(:filt,s.firstName) >0 "),
       //  @NamedQuery(name="selectTeachers",query="SELECT  t FROM Person t WHERE LOCATE(:filt,t.role.roleName)= :name "),
         @NamedQuery(name="selectTeachers", query="SELECT t FROM Person t WHERE t.role.roleName LIKE :name"),
-        @NamedQuery(name="selectStudents", query="SELECT s FROM Person s WHERE s.role.roleName LIKE :name")
+        @NamedQuery(name="selectStudents", query="SELECT s FROM Person s WHERE s.role.roleName LIKE :name"),
+        @NamedQuery(name="selectOne", query="SELECT u FROM Person u WHERE u.userName = :name and u.password = :passw ")
 })
 public class Person {
 

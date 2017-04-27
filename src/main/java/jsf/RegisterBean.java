@@ -109,6 +109,14 @@ public class RegisterBean {
         personId= personDomain.getId();
         return personDomain;
     }
+
+    public List<RegisterDomain> getStudentsPerCourse(){
+        if (getCourse()==null)
+            return null;
+        else
+            return registerService.getRegisteredStudents(getCourse().getName());
+    }
+
     public void setStudent(Long personId){
 
         this.personId= personId;}

@@ -11,6 +11,7 @@ public class AttendanceDomain {
     private RegisterDomain register;
     private Date date;
     private boolean attend;
+   // private TeachingDomain teaching;
 
 
 
@@ -18,6 +19,7 @@ public class AttendanceDomain {
         this.register= register;
         this.date= date;
         this.attend = attend;
+        //this.teaching = teaching;
     }
 
     public AttendanceDomain(long id, RegisterDomain register, Date date, boolean attend) {
@@ -25,6 +27,7 @@ public class AttendanceDomain {
         this.register= register;
         this.date= date;
         this.attend = attend;
+        //this.teaching = teaching;
     }
 
     public long getId() {
@@ -46,4 +49,8 @@ public class AttendanceDomain {
     public boolean getAttend(){return attend;}
 
     public void setAttend(boolean attend){this.attend= attend;}
+
+    //public TeachingDomain getTeaching(){return teaching;}
+
+    //public void setTeaching(TeachingDomain teaching){this.teaching = teaching;}
 }

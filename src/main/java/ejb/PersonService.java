@@ -6,7 +6,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 /**
- * Created by Solidbeans on 2017-03-20.
+ * Created by Nahid on 2017-03-28.
  */
 @Local
 public interface PersonService {
@@ -19,4 +19,5 @@ public interface PersonService {
     List<PersonDomain>getTeachers();
     List<PersonDomain>getStudents();
     public List<PersonDomain>getPersonsFirstNameContain(String filter);
+    public PersonDomain checkLogin(String userName, String password);
 }

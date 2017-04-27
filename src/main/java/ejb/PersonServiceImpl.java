@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Solidbeans on 2017-03-20.
+ * Created by Nahid on 2017-03-28.
  */
 
 @Stateless
@@ -81,6 +81,17 @@ public class PersonServiceImpl implements PersonService{
     public List<PersonDomain> getPersonsFirstNameContain(String filter) {
         List<Person> l= em.createNamedQuery("selectSome").setParameter("filt", filter).getResultList();
         return l.stream().map(p->new PersonDomain(p.getId(),p.getFirstName(),p.getLastName(), p.getUserName(),p.getPassword(),new RoleDomain(p.getRole().getRoleName()))).collect(Collectors.toList());
+    }
+
+    @Override
+    public PersonDomain checkLogin(String userName, String password) {
+        List<Person> l=em.createNamedQuery("selectOne").setParameter("name",userName). setParameter("passw", password).getResultList();
+
+        if (l.size() == 1) {
+            RoleDomain role = new RoleDomain(l.get(0).getRole().getId(), l.get(0).getRole().getRoleName());
+            return new PersonDomain(l.get(0).getId(), l.get(0).getFirstName(), l.get(0).getLastName(), l.get(0).getUserName(), l.get(0).getPassword(), role);
+        }else
+            return null;
     }
 
 

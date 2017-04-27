@@ -12,7 +12,7 @@ import javax.faces.bean.RequestScoped;
 import java.util.List;
 
 /**
- * Created by Solidbeans on 2017-03-20.
+ * Created by Nahid and Cyrus.
  */
 
 @ManagedBean
@@ -151,5 +151,13 @@ public class PersonBean {
     }
     public void setMyFilter(String myFilter){
         this.myFilter= myFilter;
+    }
+
+    public String login() {
+        PersonDomain p = personService.checkLogin(userName, password);
+        if (p == null)
+            return "failure";
+        else
+            return "success";
     }
 }
