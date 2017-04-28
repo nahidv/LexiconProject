@@ -15,5 +15,6 @@ public interface TeachingService {
     TeachingDomain getTeaching(Long id);
     void removeTeaching(Long id);
     List<TeachingDomain> getTeachings();
+    List<TeachingDomain>getThisTeaching();
     //public List<TeachingDomain>getTeachingsFirstNameContain(String filter);
 }

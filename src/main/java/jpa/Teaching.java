@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name="selectAllTeachings",query="SELECT teach FROM Teaching teach"),
        // @NamedQuery(name="selectSome",query="SELECT t FROM Teaching t WHERE LOCATE(:filt,t.id) >0 ")
+        @NamedQuery(name="selectThisTeaching",query="SELECT t FROM Teaching t where t.teacher.firstName = :name")
 })
 public class Teaching {
     @Id

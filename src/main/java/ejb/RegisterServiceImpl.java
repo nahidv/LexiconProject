@@ -67,7 +67,11 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public List<RegisterDomain> getRegisters() {
         List<Register> l = em.createNamedQuery("selectAllRegisters").getResultList();
-        return l.stream().map(r->new RegisterDomain(r.getId(),new CourseDomain(r.getCourse().getName(),r.getCourse().getStartDate(),r.getCourse().getendDate()), new PersonDomain(r.getStudent().getFirstName(), r.getStudent().getLastName(), r.getStudent().getUserName(), r.getStudent().getPassword(), new RoleDomain(r.getStudent().getRole().getRoleName())))).collect(Collectors.toList());
+        return l.stream().map(r->new RegisterDomain(r.getId(),new CourseDomain(r.getCourse().getName(),
+                r.getCourse().getStartDate(),r.getCourse().getendDate()),
+                new PersonDomain(r.getStudent().getFirstName(), r.getStudent().getLastName(),
+                        r.getStudent().getUserName(), r.getStudent().getPassword(),
+                        new RoleDomain(r.getStudent().getRole().getRoleName())))).collect(Collectors.toList());
     }
 
     @Override
@@ -79,5 +83,24 @@ public class RegisterServiceImpl implements RegisterService {
                 r.getStudent().getPassword(), new RoleDomain(r.getStudent().getRole().getRoleName())))).collect(Collectors.toList());
 
 
+    }
+    @Override
+    public List<RegisterDomain> getThisRegisters() {
+        List<Register> l = em.createNamedQuery("selectThisRegisters").setParameter("id" , 153).getResultList();
+        return l.stream().map(r->new RegisterDomain(r.getId(),new CourseDomain(r.getCourse().getName(),
+                r.getCourse().getStartDate(),r.getCourse().getendDate()),
+                new PersonDomain(r.getStudent().getFirstName(), r.getStudent().getLastName(),
+                        r.getStudent().getUserName(), r.getStudent().getPassword(),
+                        new RoleDomain(r.getStudent().getRole().getRoleName())))).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<RegisterDomain> getThisCourse() {
+        List<Register> l = em.createNamedQuery("selectThisCourse").setParameter("id" , 355).getResultList();
+        return l.stream().map(r->new RegisterDomain(r.getId(),new CourseDomain(r.getCourse().getName(),
+                r.getCourse().getStartDate(),r.getCourse().getendDate()),
+                new PersonDomain(r.getStudent().getFirstName(), r.getStudent().getLastName(),
+                        r.getStudent().getUserName(), r.getStudent().getPassword(),
+                        new RoleDomain(r.getStudent().getRole().getRoleName())))).collect(Collectors.toList());
     }
 }

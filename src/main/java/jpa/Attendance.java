@@ -12,7 +12,11 @@ import java.util.Date;
         @NamedQuery(name="selectAllAttendance",query="SELECT a FROM Attendance a"),
         @NamedQuery(name="selectSomeAttendance1",query="SELECT saf FROM Attendance saf WHERE LOCATE(:filt,saf.register.student.firstName) >0 "),
         @NamedQuery(name="selectSomeAttendance2",query="SELECT sal FROM Attendance sal WHERE LOCATE(:filt,sal.register.student.lastName) >0 "),
-        @NamedQuery(name="selectRegisteredStudentsforCourse", query="SELECT a FROM Attendance a WHERE a.register.course.id = :id")
+        @NamedQuery(name="selectRegisteredStudentsforCourse", query="SELECT a FROM Attendance a WHERE a.register.course.id = :id"),
+        @NamedQuery(name="selectThisAttendance", query="SELECT t FROM Attendance t where t.register.student.firstName = :name"),
+        @NamedQuery(name="selectCourseRegister", query="SELECT c FROM Attendance c where c.register.course.name= :name"),
+        @NamedQuery(name="selectStudentRegister", query= "SELECT s FROM Attendance s where s.register.course.name= :name"),
+        @NamedQuery(name="selectCourseAttendance", query = "SELECT cs FROM Attendance cs WHERE cs.register.course.name= :name")
 
        // @NamedQuery(name="selectRegisteredStudentsforCourse", query ="SELECT c FROM Attendance c WHERE LOCATE(:filt,c.register.course.name)>0")
       //  query = "select c.id from Cars c join CarStatus d where c.status = d.status and d.color = 'red'"

@@ -66,7 +66,9 @@ public class AttendanceBean {
         return attendanceService.getAttendances();
     }
 
+    public List<AttendanceDomain>getThisAttendance(){return attendanceService.getThisAttendance();}
 
+    public List<AttendanceDomain>getCourseAttendance(){return attendanceService.getCourseAttendance();}
 
    public List<AttendanceDomain> getStudentsPerCourse(){
         if (getRegister()==null)
@@ -74,6 +76,12 @@ public class AttendanceBean {
         else
             return attendanceService.getStudentsPerCourse(getRegister().getCourse().getId());
     }
+    public List<AttendanceDomain>getCourseRegister(){
+       return attendanceService.getCourseRegister();
+    }
+    public List<AttendanceDomain>getStudentRegister(){return attendanceService.getStudentRegister();}
+
+
 
     public String getSubmitButtonLabel(){
         if (id==null)
@@ -85,6 +93,10 @@ public class AttendanceBean {
     public String submitButtonLabel2(){
         System.out.println(getRegisterId());
             return "attendance";
+    }
+
+    public String submitButtonLabel3(){
+        return "attendteacher";
     }
 
     public Long getId() {

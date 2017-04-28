@@ -86,6 +86,42 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     }
 
+    @Override
+    public List<AttendanceDomain> getThisAttendance() {
+        List<Attendance> l = em.createNamedQuery("selectThisAttendance").setParameter("name", "nahid").getResultList();
+        return l.stream().map(a->new AttendanceDomain(a.getId(),new RegisterDomain(new CourseDomain(a.getRegister().getCourse().getName(),a.getRegister().getCourse().getStartDate(),a.getRegister().getCourse().getendDate()),
+                new PersonDomain(a.getRegister().getStudent().getFirstName(),a.getRegister().getStudent().getLastName(),a.getRegister().getStudent().getUserName(),
+                        a.getRegister().getStudent().getPassword(), new RoleDomain(a.getRegister().getStudent().getRole().getRoleName()))), a.getDate(), a.getAttend()
+        )).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AttendanceDomain> getCourseAttendance() {
+        List<Attendance> l = em.createNamedQuery("selectCourseAttendance").setParameter("name", "java").getResultList();
+        return l.stream().map(a->new AttendanceDomain(a.getId(),new RegisterDomain(new CourseDomain(a.getRegister().getCourse().getName(),a.getRegister().getCourse().getStartDate(),a.getRegister().getCourse().getendDate()),
+                new PersonDomain(a.getRegister().getStudent().getFirstName(),a.getRegister().getStudent().getLastName(),a.getRegister().getStudent().getUserName(),
+                        a.getRegister().getStudent().getPassword(), new RoleDomain(a.getRegister().getStudent().getRole().getRoleName()))), a.getDate(), a.getAttend()
+        )).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AttendanceDomain> getCourseRegister() {
+        List<Attendance> l = em.createNamedQuery("selectCourseRegister").setParameter("name", "java").getResultList();
+        return l.stream().map(a->new AttendanceDomain(a.getId(),new RegisterDomain(new CourseDomain(a.getRegister().getCourse().getName(),a.getRegister().getCourse().getStartDate(),a.getRegister().getCourse().getendDate()),
+                new PersonDomain(a.getRegister().getStudent().getFirstName(),a.getRegister().getStudent().getLastName(),a.getRegister().getStudent().getUserName(),
+                        a.getRegister().getStudent().getPassword(), new RoleDomain(a.getRegister().getStudent().getRole().getRoleName()))), a.getDate(), a.getAttend()
+        )).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AttendanceDomain> getStudentRegister() {
+        List<Attendance> l = em.createNamedQuery("selectStudentRegister").setParameter("name", "java").getResultList();
+        return l.stream().map(a->new AttendanceDomain(a.getId(),new RegisterDomain(new CourseDomain(a.getRegister().getCourse().getName(),a.getRegister().getCourse().getStartDate(),a.getRegister().getCourse().getendDate()),
+                new PersonDomain(a.getRegister().getStudent().getFirstName(),a.getRegister().getStudent().getLastName(),a.getRegister().getStudent().getUserName(),
+                        a.getRegister().getStudent().getPassword(), new RoleDomain(a.getRegister().getStudent().getRole().getRoleName()))), a.getDate(), a.getAttend()
+        )).collect(Collectors.toList());
+    }
+
 
 }
 

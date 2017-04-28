@@ -16,4 +16,8 @@ public interface AttendanceService {
     void remove(Long id);
     List<AttendanceDomain> getAttendances();
     List<AttendanceDomain>getStudentsPerCourse(Integer id);
+    List<AttendanceDomain>getThisAttendance();
+    List<AttendanceDomain>getCourseAttendance();
+    List<AttendanceDomain>getCourseRegister();
+    List<AttendanceDomain>getStudentRegister();
 }

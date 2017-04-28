@@ -28,7 +28,7 @@
 
   <!-- Welcome files -->
   <welcome-file-list>
-    <welcome-file>attendance.xhtml</welcome-file>
+    <welcome-file>teacher.xhtml</welcome-file>
   </welcome-file-list>
 
 </web-app>

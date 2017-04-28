@@ -14,4 +14,6 @@ public interface RegisterService {
     void remove(Long id);
     List<RegisterDomain> getRegisters();
     List<RegisterDomain>getRegisteredStudents(String courseName);
+    List<RegisterDomain> getThisRegisters();
+    List<RegisterDomain>getThisCourse();
 }

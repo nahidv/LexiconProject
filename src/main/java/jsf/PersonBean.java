@@ -87,6 +87,8 @@ public class PersonBean {
         return personService.getStudents();
     }
 
+    public List<PersonDomain> getThisStudent(){return personService.getThisStuent();}
+
     public String getSubmitButtonLabel(){
         if (id==null)
             return "Add";
@@ -153,11 +155,22 @@ public class PersonBean {
         this.myFilter= myFilter;
     }
 
-    public String login() {
+    /*public String login() {
         PersonDomain p = personService.checkLogin(userName, password);
         if (p == null)
             return "failure";
-        else
-            return "success";
-    }
+        else {
+            loginBean.setId(p.getId());
+            loginBean.setUsername(p.getUserName());
+            loginBean.setRoleId(p.getRole().getId());
+            loginBean.setFirstname(p.getFirstName());
+            loginBean.setLastname(p.getLastName());
+            if (loginBean.getRoleId() == 3)
+                return "student?faces-redirect=true";
+            else if (p.getRole().getId() == 2)
+                return "teacher";
+
+            else
+                return "admin";
+    }*/
 }

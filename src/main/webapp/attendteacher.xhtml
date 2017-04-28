@@ -9,37 +9,31 @@
     <h:form id="form1">
         <h:panelGrid columns="3">
             <h:panelGrid columns="2" style="vertical-align: top">
-               <h:outputText value='Select Your Course'/>
+
+               <!-- <h:outputText value='Select Your Course'/>
                 <h:selectOneMenu value="#{registerBean.courseId}">
                     <f:selectItems value="#{registerBean.registers}" var="courses" itemValue="#{courses.id}" itemLabel="#{courses.course.name}" />
-                </h:selectOneMenu>
+                </h:selectOneMenu>-->
 
-                <!--<h:outputText value='Select Your Course'/>
+                <h:outputText value='Select Your Course'/>
                 <h:selectOneMenu value="#{attendanceBean.id}">
                     <f:selectItems value="#{attendanceBean.courseRegister}" var="courses" itemValue="#{courses.register.id}" itemLabel="#{courses.register.course.name}" />
-                </h:selectOneMenu>-->
-                <!--<h:commandButton value="submit" action="#{courseBean.submitButtonLabel2}"/>
-                    <h:inputHidden value=" Course Id"/>-->
-                <!--         <h:inputHidden value="#{attendanceBean.register.id}"/>-->
+                </h:selectOneMenu>
 
-               <h:outputText value='Select Student name'/>
-                  <h:selectOneMenu value="#{attendanceBean.registerId}">
-                      <f:selectItems value="#{registerBean.registers}" var="students" itemValue="#{students.id}" itemLabel="#{students.student.firstName}" />
-                  </h:selectOneMenu>
-              <!--  <h:outputText value = 'Students'/>
-                 <h:selectOneMenu value="#{attendanceBean.id}">
-                     <f:selectItems value="#{attendanceBean.studentRegister}" var="student" itemValue="#{student.register.id}" itemLabel= "#{student.register.student.firstName}" />
-                 </h:selectOneMenu>-->
 
-              <!-- <h:outputText value= 'select Student' />
-                <h:selectOneMenu value="#{attendanceBean.id}">
-                    <f:selectItems value="#{attendanceBean.studentsPerCourse}" var="students" itemValue="#{students.register.student}" itemLabel="#{students.register.student.firstName}" />
+
+                <!--<h:outputText value='Select Student name'/>
+                <h:selectOneMenu value="#{attendanceBean.registerId}">
+                    <f:selectItems value="#{registerBean.registers}" var="students" itemValue="#{students.id}" itemLabel="#{students.student.firstName}" />
                 </h:selectOneMenu>-->
 
-              <!--  <h:outputText value='Select Student'/>
-                    <h:selectOneMenu value="#{attendanceBean.registerId}">
-                        <f:selectItems value="#{registerBean.studentsPerCourse}" var="students" itemValue="#{students.id}" itemLabel = "#{students.student.firstName}"/>
-                    </h:selectOneMenu>-->
+                  <h:outputText value = 'Students'/>
+                   <h:selectOneMenu value="#{attendanceBean.id}">
+                       <f:selectItems value="#{attendanceBean.studentRegister}" var="student" itemValue="#{student.register.id}" itemLabel= "#{student.register.student.firstName}" />
+                   </h:selectOneMenu>
+
+
+
 
                 <h:outputText value='Enter Date'/>
                 <h:inputText id = "Date" value = "#{attendanceBean.date}" label = "Date" >
@@ -55,7 +49,7 @@
             </h:panelGrid>
             <h:panelGrid columns="1" style="vertical-align: top">
                 <h:outputText value="Attendance List"/>
-                <h:dataTable id="tbl1" value="#{attendanceBean.attendances}" var="a">
+                <h:dataTable id="tbl1" value="#{attendanceBean.courseAttendance}" var="a">
                     <h:column >
                         <f:facet name="header">Id</f:facet>
                         <h:outputText id="id" value="#{a.id}"/>

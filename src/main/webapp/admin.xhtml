@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+
+
+    <h:form id="form2">
+        <h:panelGrid columns="3">
+            <h:panelGrid columns="1" style="vertical-align: top">
+                <h:outputText value="--------------------------------------"/>
+                <h:outputText value="Attendance List For All Students and courses"/>
+                <h:dataTable id="tbl2" value="#{attendanceBean.attendances}" var="a">
+                    <h:column >
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText id="idd" value="#{a.id}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Course Name</f:facet>
+                        <h:outputText value="#{a.register.course.name}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Student's Firstname</f:facet>
+                        <h:outputText value="#{a.register.student.firstName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Student's Lastname</f:facet>
+                        <h:outputText value="#{a.register.student.lastName}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{a.date}"/>
+                    </h:column>
+                    <h:column >
+                        <f:facet name="header">Attendance</f:facet>
+                        <h:outputText value="#{a.attend}"/>
+                    </h:column>
+
+                </h:dataTable>
+
+            </h:panelGrid>
+        </h:panelGrid>
+    </h:form>
+</f:view>
+</html>

@@ -21,9 +21,10 @@
                 <h:selectOneMenu value="#{personBean.roleId}">
                     <f:selectItems value="#{roleBean.roles}" var="role" itemValue="#{role.id}" itemLabel="#{role.roleName}" />
                 </h:selectOneMenu>
-
                 <h:commandButton action="#{personBean.addPerson}" value="#{personBean.submitButtonLabel}"/>
                 <h:inputHidden value="#{personBean.id}"/>
+
+
             </h:panelGrid>
             <h:panelGrid columns="1" style="vertical-align: top">
                 <h:outputText value="Unfilterd List"/>

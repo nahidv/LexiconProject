@@ -63,12 +63,9 @@ public class TeachingBean {
         return teachingService.getTeachings();
     }
 
-   /* public List<TeachingDomain> getTaachingFilter(){
-        if(myFilter==null || myFilter.equals(""))
-            return teacingsService.getTeachings();
-        else
-            return teachingService.getTeachingsFirstNameContain(myFilter);
-    }*/
+    public List<TeachingDomain> getThisTeaching(){
+        return teachingService.getThisTeaching();
+    }
 
     public String getSubmitButtonLabel(){
         if (id==null)

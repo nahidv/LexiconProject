@@ -64,4 +64,10 @@ public class TeachingServiceImpl implements TeachingService {
         List<Teaching> l = em.createNamedQuery("selectAllTeachings").getResultList();
         return l.stream().map(t->new TeachingDomain(t.getId(),new CourseDomain(t.getCourse().getName(),t.getCourse().getStartDate(),t.getCourse().getendDate()), new PersonDomain(t.getTeacher().getFirstName(), t.getTeacher().getLastName(), t.getTeacher().getUserName(), t.getTeacher().getPassword(), new RoleDomain(t.getTeacher().getRole().getRoleName())))).collect(Collectors.toList());
     }
+
+    @Override
+    public List<TeachingDomain> getThisTeaching() {
+        List<Teaching> l = em.createNamedQuery("selectThisTeaching").setParameter("name", "bengt").getResultList();
+        return l.stream().map(t->new TeachingDomain(t.getId(),new CourseDomain(t.getCourse().getName(),t.getCourse().getStartDate(),t.getCourse().getendDate()), new PersonDomain(t.getTeacher().getFirstName(), t.getTeacher().getLastName(), t.getTeacher().getUserName(), t.getTeacher().getPassword(), new RoleDomain(t.getTeacher().getRole().getRoleName())))).collect(Collectors.toList());
+    }
 }

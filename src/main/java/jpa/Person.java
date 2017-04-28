@@ -12,7 +12,8 @@ import javax.persistence.*;
       //  @NamedQuery(name="selectTeachers",query="SELECT  t FROM Person t WHERE LOCATE(:filt,t.role.roleName)= :name "),
         @NamedQuery(name="selectTeachers", query="SELECT t FROM Person t WHERE t.role.roleName LIKE :name"),
         @NamedQuery(name="selectStudents", query="SELECT s FROM Person s WHERE s.role.roleName LIKE :name"),
-        @NamedQuery(name="selectOne", query="SELECT u FROM Person u WHERE u.userName = :name and u.password = :passw ")
+        @NamedQuery(name="selectOne", query="SELECT u FROM Person u WHERE u.userName = :name and u.password = :passw "),
+        @NamedQuery(name= "selectThisStudent", query = "SELECT st from Person st where st.firstName = :name")
 })
 public class Person {
 

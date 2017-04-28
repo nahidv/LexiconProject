@@ -9,11 +9,12 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name="selectAllRegisters",query="SELECT r FROM Register r"),
+        @NamedQuery(name="selectAllRegisters",query="SELECT  r FROM Register r"),
          @NamedQuery(name="selectSomeRegisters1",query="SELECT sr FROM Register sr WHERE LOCATE(:filt,sr.student.firstName) >0 "),
         @NamedQuery(name="selectSomeRegisters2",query="SELECT sr FROM Register sr WHERE LOCATE(:filt,sr.course.name) >0 "),
-        @NamedQuery(name="selectRegisteredStudents", query="SELECT r FROM Register r WHERE r.course.name = :name")
-
+        @NamedQuery(name="selectRegisteredStudents", query="SELECT r FROM Register r WHERE r.course.name = :name"),
+        @NamedQuery(name="selectThisRegisters",query= "SELECT t FROM Register t where t.student.id = :id"),
+        @NamedQuery(name="selectThisCourse", query="SELECT c FROM Register c where c.course.id = :id")
 })
 
 public class Register {

@@ -18,6 +18,8 @@ public interface PersonService {
     List<PersonDomain> getPersons();
     List<PersonDomain>getTeachers();
     List<PersonDomain>getStudents();
+    List<PersonDomain>getThisStuent();
     public List<PersonDomain>getPersonsFirstNameContain(String filter);
     public PersonDomain checkLogin(String userName, String password);
+
 }
