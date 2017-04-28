@@ -8,6 +8,7 @@ import domain.RoleDomain;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class PersonBean {
     private Integer roleId;
 
 
-
     private String myFilter;
 
     @EJB
@@ -35,16 +35,26 @@ public class PersonBean {
     @EJB
     RoleService roleService;
 
-    public String addPerson(){
+    @ManagedProperty(value = "#{loginBean}")
+    private LoginBean loginBean;
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
+
+    public String addPerson() {
 
 
-        if (getId()==null) {
+        if (getId() == null) {
 
 
             personService.addPerson(new PersonDomain(getFirstName(), getLastName(), getUserName(), getPassword(), getRole()));
-        }
-        else
-            personService.updatePerson(new PersonDomain(getId(),getFirstName(),getLastName(),getUserName(),getPassword(),getRole()));
+        } else
+            personService.updatePerson(new PersonDomain(getId(), getFirstName(), getLastName(), getUserName(), getPassword(), getRole()));
 
         setId(null);
         setFirstName("");
@@ -55,7 +65,8 @@ public class PersonBean {
         setRole(null);
         return "person";
     }
-    public String editPerson(Long id){
+
+    public String editPerson(Long id) {
         PersonDomain personDomain = personService.getPerson(id);
         setId(personDomain.getId());
         setFirstName(personDomain.getFirstName());
@@ -65,36 +76,42 @@ public class PersonBean {
         setRole(personDomain.getRole().getId());
         return "person";
     }
-    public String removePerson(Long id){
+
+    public String removePerson(Long id) {
         personService.removePerson(id);
         return "person";
     }
-    public List<PersonDomain> getPersons(){
+
+    public List<PersonDomain> getPersons() {
         return personService.getPersons();
     }
 
-    public List<PersonDomain> getPersonsFilter(){
-        if(myFilter==null || myFilter.equals(""))
+    public List<PersonDomain> getPersonsFilter() {
+        if (myFilter == null || myFilter.equals(""))
             return personService.getPersons();
         else
             return personService.getPersonsFirstNameContain(myFilter);
     }
-    public List<PersonDomain> getTeachers(){
+
+    public List<PersonDomain> getTeachers() {
         return personService.getTeachers();
     }
 
-    public List<PersonDomain> getStudents(){
+    public List<PersonDomain> getStudents() {
         return personService.getStudents();
     }
 
-    public List<PersonDomain> getThisStudent(){return personService.getThisStuent();}
+    public List<PersonDomain> getThisStudent() {
+        return personService.getThisStuent();
+    }
 
-    public String getSubmitButtonLabel(){
-        if (id==null)
+    public String getSubmitButtonLabel() {
+        if (id == null)
             return "Add";
         else
             return "Update";
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -119,26 +136,34 @@ public class PersonBean {
         this.id = id;
     }
 
-    public String getUserName() {return userName;}
+    public String getUserName() {
+        return userName;
+    }
 
-    public void setUserName(String userName){this.userName = userName;}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public String getPassword(){return password;}
+    public String getPassword() {
+        return password;
+    }
 
-    public void setPassword(String password){this.password = password;}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public RoleDomain getRole(){
+    public RoleDomain getRole() {
 
-        RoleDomain roleDomain= roleService.getRole(getRoleId());
-        roleId= roleDomain.getId();
+        RoleDomain roleDomain = roleService.getRole(getRoleId());
+        roleId = roleDomain.getId();
         return roleDomain;
     }
 
 
+    public void setRole(Integer roleId) {
 
-    public void setRole(Integer roleId){
-
-        this.roleId= roleId;}
+        this.roleId = roleId;
+    }
 
     public Integer getRoleId() {
         return roleId;
@@ -148,14 +173,15 @@ public class PersonBean {
         this.roleId = roleId;
     }
 
-    public String getMyFilter(){
+    public String getMyFilter() {
         return myFilter;
     }
-    public void setMyFilter(String myFilter){
-        this.myFilter= myFilter;
+
+    public void setMyFilter(String myFilter) {
+        this.myFilter = myFilter;
     }
 
-    /*public String login() {
+    public String login() {
         PersonDomain p = personService.checkLogin(userName, password);
         if (p == null)
             return "failure";
@@ -168,9 +194,10 @@ public class PersonBean {
             if (loginBean.getRoleId() == 3)
                 return "student?faces-redirect=true";
             else if (p.getRole().getId() == 2)
-                return "teacher";
+                return "teacher?faces-redirect=true";
 
             else
-                return "admin";
-    }*/
+                return "admin?faces-redirect=true";
+        }
+    }
 }
